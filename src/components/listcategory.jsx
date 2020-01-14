@@ -35,16 +35,17 @@ class Listcategory extends Component {
         const {post} = this.state;
         //contenido del jsx 
         const posts = [];
-        for (const [i] of post.entries()) {
+        //value es el llamado a esa propiedad (variable asignada en el for)
+        for (const [i,value] of post.entries()) {
                 posts.push(
                     <div className = "row">
                         <div className = 'col-md-4'>                    
                     <div className="card" style={{width: "18rem"}}>
-                <img className="card-img-top" src="..." alt="Card image cap"/>                
+                <img className="card-img-top" src={value.url} alt="Card image cap"/>                
                 <div className="card-body">
                 {/* visualizar que tipo de datos traemos (nombre, id, numero, img) */}
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text">{post.id}</p>
+                    <h5 className="card-title">{value.title}</h5>
+                    <p className="card-text">{value.id}</p>
                     <a href="#" className="btn btn-primary">Go somewhere</a>
                 </div>
                 </div>
