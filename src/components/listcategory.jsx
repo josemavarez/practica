@@ -5,7 +5,6 @@ import axios from 'axios';
 
 class Listcategory extends Component {
     constructor(){
-
         super();
         this.state = {
             post : []
@@ -13,7 +12,7 @@ class Listcategory extends Component {
     }
 //aqui va la fuente .json 
         componentDidMount(){
-                axios.get('https://jsonplaceholder.typicode.com/users/1',{
+                axios.get('https://jsonplaceholder.typicode.com/photos',{
                        //especifico el formato en el que se muestra los datos
                         headers: {
                         'Content-Type': 'application/json'
@@ -24,7 +23,6 @@ class Listcategory extends Component {
                 .then(res => {
                     this.setState({
                         post : res.data
-
                     })
                 })
                 //en saso de error
@@ -32,29 +30,37 @@ class Listcategory extends Component {
                     console.log(error)
                 })
         }
-
-
-    render(){
+        render(){
         //extraer post desde los estados
         const {post} = this.state;
         //contenido del jsx 
-        return(
-                    <div className = "container">                    
+        const posts = [];
+        for (const [i] of post.entries()) {
+                posts.push(
+                    <div className = "row">
+                        <div className = 'col-md-4'>                    
                     <div className="card" style={{width: "18rem"}}>
                 <img className="card-img-top" src="..." alt="Card image cap"/>                
                 <div className="card-body">
                 {/* visualizar que tipo de datos traemos (nombre, id, numero, img) */}
-                    <h5 className="card-title">{post.name}</h5>
+                    <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">{post.id}</p>
                     <a href="#" className="btn btn-primary">Go somewhere</a>
                 </div>
                 </div>
+                </div>
+            </div>
+        
+        )
+                }
+        return(
+            <div className= 'row'>
+                <div className = 'col-md-7'>
+                    {posts}
+                </div>
             </div>
         )
-    
     }
-    
 }
 //exportar la clase
 export default Listcategory;
-
